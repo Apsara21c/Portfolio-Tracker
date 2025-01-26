@@ -1,17 +1,10 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { StockList } from './components/StockList';
 import { StockForm } from './components/StockForm';
 import { Stock, PortfolioMetrics } from './types/stock';
 import { Plus } from 'lucide-react';
 import { api } from './services/api';
-// import {getStock} from '../server/services'
-
-
-
-
-
-
 
 function App() {
   const [stocks, setStocks] = useState<Stock[]>([]);
@@ -74,25 +67,25 @@ function App() {
       worstPerformer,
     };
   };
+
   const handleSubmit = async (stockData: Partial<Stock>) => {
     try {
       if (!stockData.symbol || !stockData.name || !stockData.quantity || !stockData.buyPrice || !stockData.currentPrice) {
         setError('All fields are required');
         return;
       }
-  
+
       // Fetch the current price if not provided
       const currentPrice = stockData.currentPrice;
-     
-  
+
       console.log('Submitting stock data:', { ...stockData, currentPrice });
-  
+
       if (editingStock) {
         await api.updateStock(editingStock._id, { ...stockData, currentPrice });
       } else {
         await api.addStock({ ...stockData, currentPrice });
       }
-  
+
       await fetchStocks();
       setShowForm(false);
       setEditingStock(undefined);
@@ -102,12 +95,7 @@ function App() {
       setError(`Failed to save stock: ${err || 'Unknown error'}`);
     }
   };
-  
-  
-  
- 
-  
-  
+
   const handleEdit = (stock: Stock) => {
     setEditingStock(stock);
     setShowForm(true);
@@ -126,28 +114,26 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-xl font-semibold text-gray-600">Loading...</div>
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-xl font-semibold text-gray-300">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8">
         {error && (
-          <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
+          <div className="mb-4 p-4 bg-red-800 text-red-200 rounded-lg shadow-md">
             {error}
           </div>
         )}
-        
+
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Portfolio Tracker
-          </h1>
+          <h1 className="text-4xl font-extrabold text-gray-50">Portfolio Tracker</h1>
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200"
           >
             <Plus className="h-5 w-5 mr-2" />
             Add Stock
@@ -157,7 +143,7 @@ function App() {
         <Dashboard stocks={stocks} metrics={calculateMetrics(stocks)} />
 
         <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">Your Holdings</h2>
+          <h2 className="text-2xl font-semibold text-gray-50 mb-4">Your Holdings</h2>
           <StockList
             stocks={stocks}
             onEdit={handleEdit}

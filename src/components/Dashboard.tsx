@@ -17,31 +17,33 @@ export const Dashboard: React.FC<DashboardProps> = ({ stocks, metrics }) => {
   }));
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Portfolio Overview</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 bg-blue-50 rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" style={{ backgroundColor: '#1C1C1C' }}>
+      <div className="bg-[#2d2d2d] p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#fff' }}>
+          Portfolio Overview
+        </h2>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="p-5 bg-blue-800 rounded-lg">
             <div className="flex items-center gap-2">
               <DollarSign className="text-blue-500" />
-              <span className="text-sm text-gray-600">Total Value</span>
+              <span className="text-sm text-gray-300">Total Value</span>
             </div>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-semibold text-blue-200">
               ${metrics.totalValue.toFixed(2)}
             </p>
           </div>
-          <div className="p-4 bg-green-50 rounded-lg">
+          <div className="p-5 bg-green-800 rounded-lg">
             <div className="flex items-center gap-2">
               {metrics.totalGainLoss >= 0 ? (
                 <TrendingUp className="text-green-500" />
               ) : (
                 <TrendingDown className="text-red-500" />
               )}
-              <span className="text-sm text-gray-600">Total Gain/Loss</span>
+              <span className="text-sm text-gray-300">Total Gain/Loss</span>
             </div>
             <p
-              className={`text-2xl font-bold ${
-                metrics.totalGainLoss >= 0 ? 'text-green-600' : 'text-red-600'
+              className={`text-2xl font-semibold ${
+                metrics.totalGainLoss >= 0 ? 'text-green-200' : 'text-red-200'
               }`}
             >
               ${Math.abs(metrics.totalGainLoss).toFixed(2)}
@@ -49,8 +51,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ stocks, metrics }) => {
           </div>
         </div>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Portfolio Distribution</h2>
+      <div className="bg-[#2d2d2d] p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#fff' }}>
+          Portfolio Distribution
+        </h2>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>

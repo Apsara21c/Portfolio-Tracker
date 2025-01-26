@@ -18,8 +18,7 @@ export const StockForm: React.FC<StockFormProps> = ({
     name: '',
     quantity: 1,
     buyPrice: 0,
-    currentPrice:20
-    
+    currentPrice: 20,
   });
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export const StockForm: React.FC<StockFormProps> = ({
         return;
       }
 
-      console.log("Current Price",formData.currentPrice)
+      console.log("Current Price", formData.currentPrice);
       await onSubmit(formData);
       onClose();
     } catch (error) {
@@ -47,25 +46,22 @@ export const StockForm: React.FC<StockFormProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+      <div className="bg-[#FFF8E1] rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">
+          <h2
+            className="text-xl font-semibold"
+            style={{ fontFamily: 'Playfair Display, serif', color: '#1C1C1C' }}
+          >
             {stock ? 'Edit Stock' : 'Add Stock'}
           </h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-          >
+          <button onClick={onClose} className="text-[#333333] hover:text-[#1C1C1C]">
             <X className="h-6 w-6" />
           </button>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label
-                htmlFor="symbol"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="symbol" className="block text-sm font-medium text-[#1C1C1C]">
                 Symbol
               </label>
               <input
@@ -75,15 +71,12 @@ export const StockForm: React.FC<StockFormProps> = ({
                 onChange={(e) =>
                   setFormData({ ...formData, symbol: e.target.value.toUpperCase() })
                 }
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-[#333333] shadow-sm focus:border-[#FF9800] focus:ring-[#FF9800]"
                 required
               />
             </div>
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="name" className="block text-sm font-medium text-[#1C1C1C]">
                 Name
               </label>
               <input
@@ -93,15 +86,12 @@ export const StockForm: React.FC<StockFormProps> = ({
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-[#333333] shadow-sm focus:border-[#FF9800] focus:ring-[#FF9800]"
                 required
               />
             </div>
             <div>
-              <label
-                htmlFor="quantity"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="quantity" className="block text-sm font-medium text-[#1C1C1C]">
                 Quantity
               </label>
               <input
@@ -109,21 +99,15 @@ export const StockForm: React.FC<StockFormProps> = ({
                 id="quantity"
                 value={formData.quantity || ''}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    quantity: parseInt(e.target.value),
-                  })
+                  setFormData({ ...formData, quantity: parseInt(e.target.value) })
                 }
                 min="1"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-[#333333] shadow-sm focus:border-[#FF9800] focus:ring-[#FF9800]"
                 required
               />
             </div>
             <div>
-              <label
-                htmlFor="buyPrice"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="buyPrice" className="block text-sm font-medium text-[#1C1C1C]">
                 Buy Price
               </label>
               <input
@@ -131,22 +115,16 @@ export const StockForm: React.FC<StockFormProps> = ({
                 id="buyPrice"
                 value={formData.buyPrice || ''}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    buyPrice: parseFloat(e.target.value),
-                  })
+                  setFormData({ ...formData, buyPrice: parseFloat(e.target.value) })
                 }
                 min="0"
                 step="0.01"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-[#333333] shadow-sm focus:border-[#FF9800] focus:ring-[#FF9800]"
                 required
               />
             </div>
             <div>
-              <label
-                htmlFor="currentPrice"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="currentPrice" className="block text-sm font-medium text-[#1C1C1C]">
                 Current Price
               </label>
               <input
@@ -154,13 +132,10 @@ export const StockForm: React.FC<StockFormProps> = ({
                 id="currentPrice"
                 value={formData.currentPrice || ''}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    currentPrice: parseInt(e.target.value),
-                  })
+                  setFormData({ ...formData, currentPrice: parseInt(e.target.value) })
                 }
                 min="1"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-[#333333] shadow-sm focus:border-[#FF9800] focus:ring-[#FF9800]"
                 required
               />
             </div>
@@ -169,13 +144,13 @@ export const StockForm: React.FC<StockFormProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+              className="px-4 py-2 border border-[#333333] rounded-md text-sm font-medium text-[#1C1C1C] hover:bg-[#FFF8E1]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#FF9800] hover:bg-[#FF8C00]"
             >
               {stock ? 'Update' : 'Add'}
             </button>
