@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     //   // If price fetch fails, we set it to 0 and can later update it
     //   currentPrice = 0;
     // }
-
+    console.log("Final current Price",currentPrice)
     const stock = new Stock({
       symbol: symbol.toUpperCase(),
       name,
@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
       buyPrice: Number(buyPrice),
       currentPrice: Number(currentPrice)// Save currentPrice (either fetched or default)
     });
+
 
     const newStock = await stock.save();
     res.status(201).json(newStock);

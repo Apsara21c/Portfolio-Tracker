@@ -83,7 +83,7 @@ function App() {
   
       // Fetch the current price if not provided
       const currentPrice = stockData.currentPrice;
-      console.log("HIIIIIIIIIIIIIIIIIIIII",currentPrice)
+     
   
       console.log('Submitting stock data:', { ...stockData, currentPrice });
   
